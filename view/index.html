@@ -1,0 +1,39 @@
+<html>
+    <title>Accion Labs</title>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../style/myStyle.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+        <script src="../app.js"></script>
+        <script src="../controller/accion_labs.ctrl.js"></script>
+        <script src="../service/utility.service.js"></script>
+        <script src="../service/userDetail.service.js"></script>
+    </head>
+    <body ng-app='accion_lab'>
+        <div ng-controller='accionTableCtrl as accionVm' class="container">
+            <h1>The Table-data coming post service call</h1> 
+            <p>Arrow Icon for acending and decending order sorting will apper to respective table header on click</p>
+            <div>                        
+              <table class="table table-hover accionTable">
+                <thead>
+                  <tr class="tableHRow">
+                    <th ng-click='checkCoulmnName("UId")' ng-class='sortClass("UId")'>User ID</th>
+                    <th ng-click='checkCoulmnName("title")' ng-class='sortClass("title")'>Title</th>
+                    <th ng-click='checkCoulmnName("sumry")' ng-class='sortClass("sumry")'>Summary</th>
+                  </tr>
+                </thead>
+                <tbody ng-repeat='item in accionVm.jsonRes | orderBy:column:reverse'>
+                  <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.body}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </body>
+</html>
